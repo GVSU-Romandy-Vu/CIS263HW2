@@ -295,11 +295,12 @@ public class BinarySearchTree<AnyType extends Comparable<? super AnyType>>
     		}
     		
     		else {
-    			//Adds node to the path
+    			//Adds the node to the path to be printed
     			ancestors.add(t);
     			//Checks if more nodes needs to be added to the path before reaching a leaf.
     			printLeavesAndAncestors(t.left, ancestors);
     			printLeavesAndAncestors(t.right, ancestors);
+    			//Removes node after printing the path from the root to the leaf's parent
     			ancestors.remove(t);
     			
     		}
