@@ -1,3 +1,5 @@
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -276,14 +278,16 @@ public class BinarySearchTree<AnyType extends Comparable<? super AnyType>>
      * The created method that is being graded.
      ************************************************************************/
     
-    private void printLeavesAndAncestors(BinaryNode <AnyType> t, List <BinaryNode<AnyType>> ancestors) {
+    private void printLeavesAndAncestors(BinaryNode<AnyType> t, List <BinaryNode<AnyType>> ancestors) {
     	if(t != null) {
     		
     		if(t.left == null && t.right == null) {
-    			System.out.println(t + " ");
+    			System.out.print("Leaf: "+ t.element + " ");
+    			System.out.print("Ancestors: ");
     			for(BinarySearchTree.BinaryNode<AnyType> ancestor: ancestors) {
-    				System.out.println(ancestor + " ");
+    				System.out.print(ancestor.element + " ");
     			}
+    			System.out.println();
     		}
     		
     		else {
@@ -298,16 +302,18 @@ public class BinarySearchTree<AnyType extends Comparable<? super AnyType>>
     }
 
         // Test program
-    public static void main( String [ ] args )
+    public static void main( String [ ] args ) throws FileNotFoundException
     {
         BinarySearchTree<Integer> t = new BinarySearchTree<>( );
-        Scanner scnr = new Scanner(System.in);
+        File file = new File("fourLeaves.txt");
+        Scanner scnr = new Scanner(file);
         while(scnr.hasNext()) {
         	int value = scnr.nextInt();
         	t.insert(value);
         }
-        
+        scnr.close();
         t.printLeavesAndAncestors();
+        System.out.println("Finished!");
         
     }
 }
