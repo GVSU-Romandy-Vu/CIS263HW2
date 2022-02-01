@@ -320,7 +320,7 @@ public class BinarySearchTree<AnyType extends Comparable<? super AnyType>>
         }
         scnr.close();
         t.printLeavesAndAncestors();
-        System.out.println("Finished!");
+        System.out.println("Finished");
         
     }
 }
