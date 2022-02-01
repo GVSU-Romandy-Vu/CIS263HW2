@@ -1,3 +1,7 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
 // BinarySearchTree class
 //
 // CONSTRUCTION: with no initializer
@@ -255,36 +259,55 @@ public class BinarySearchTree<AnyType extends Comparable<? super AnyType>>
 
       /** The tree root. */
     private BinaryNode<AnyType> root;
-
+    
+    /************************************************************************
+     * FIXME: Work on this one
+     * The created method that is being graded.
+     * 
+     *************************************************************************/
+    public void printLeavesAndAncestors() {
+    	List <BinaryNode<AnyType>> ancestors = new ArrayList<BinaryNode<AnyType>>();
+    	
+    	printLeavesAndAncestors(root, ancestors);
+    }
+    
+    /*************************************************************************
+     * FIXME: Work on this one
+     * The created method that is being graded.
+     ************************************************************************/
+    
+    private void printLeavesAndAncestors(BinaryNode <AnyType> t, List <BinaryNode<AnyType>> ancestors) {
+    	if(t != null) {
+    		
+    		if(t.left == null && t.right == null) {
+    			System.out.println(t + " ");
+    			for(BinarySearchTree.BinaryNode<AnyType> ancestor: ancestors) {
+    				System.out.println(ancestor + " ");
+    			}
+    		}
+    		
+    		else {
+    			ancestors.add(t);
+    			printLeavesAndAncestors(t.left, ancestors);
+    			printLeavesAndAncestors(t.right, ancestors);
+    			ancestors.remove(t);
+    			
+    		}
+    	}
+    	
+    }
 
         // Test program
     public static void main( String [ ] args )
     {
         BinarySearchTree<Integer> t = new BinarySearchTree<>( );
-        final int NUMS = 4000;
-        final int GAP  =   37;
-
-        System.out.println( "Checking... (no more output means success)" );
-
-        for( int i = GAP; i != 0; i = ( i + GAP ) % NUMS )
-            t.insert( i );
-
-        for( int i = 1; i < NUMS; i+= 2 )
-            t.remove( i );
-
-        if( NUMS < 40 )
-            t.printTree( );
-        if( t.findMin( ) != 2 || t.findMax( ) != NUMS - 2 )
-            System.out.println( "FindMin or FindMax error!" );
-
-        for( int i = 2; i < NUMS; i+=2 )
-             if( !t.contains( i ) )
-                 System.out.println( "Find error1!" );
-
-        for( int i = 1; i < NUMS; i+=2 )
-        {
-            if( t.contains( i ) )
-                System.out.println( "Find error2!" );
+        Scanner scnr = new Scanner(System.in);
+        while(scnr.hasNext()) {
+        	int value = scnr.nextInt();
+        	t.insert(value);
         }
+        
+        t.printLeavesAndAncestors();
+        
     }
 }
