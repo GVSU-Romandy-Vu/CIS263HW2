@@ -268,8 +268,10 @@ public class BinarySearchTree<AnyType extends Comparable<? super AnyType>>
      * 
      *************************************************************************/
     public void printLeavesAndAncestors() {
+    	//Used to help print the path to the leaf's parent from the root.
     	List <BinaryNode<AnyType>> ancestors = new ArrayList<BinaryNode<AnyType>>();
     	
+    	//Works recursively
     	printLeavesAndAncestors(root, ancestors);
     }
     
@@ -279,8 +281,10 @@ public class BinarySearchTree<AnyType extends Comparable<? super AnyType>>
      ************************************************************************/
     
     private void printLeavesAndAncestors(BinaryNode<AnyType> t, List <BinaryNode<AnyType>> ancestors) {
+    	//Helps with recursion to create or stop creating another stackframe of the method
     	if(t != null) {
     		
+    		//t is a leaf if it does not have any children
     		if(t.left == null && t.right == null) {
     			System.out.print("Leaf: "+ t.element + " ");
     			System.out.print("Ancestors: ");
@@ -291,9 +295,12 @@ public class BinarySearchTree<AnyType extends Comparable<? super AnyType>>
     		}
     		
     		else {
+    			//Adds the node to the path to be printed
     			ancestors.add(t);
+    			//Checks if more nodes needs to be added to the path before reaching a leaf.
     			printLeavesAndAncestors(t.left, ancestors);
     			printLeavesAndAncestors(t.right, ancestors);
+    			//Removes node after printing the path from the root to the leaf's parent
     			ancestors.remove(t);
     			
     		}
@@ -305,7 +312,7 @@ public class BinarySearchTree<AnyType extends Comparable<? super AnyType>>
     public static void main( String [ ] args ) throws FileNotFoundException
     {
         BinarySearchTree<Integer> t = new BinarySearchTree<>( );
-        File file = new File("fourLeaves.txt");
+        File file = new File("twoLeaves.txt");
         Scanner scnr = new Scanner(file);
         while(scnr.hasNext()) {
         	int value = scnr.nextInt();
