@@ -312,8 +312,8 @@ public class BinarySearchTree<AnyType extends Comparable<? super AnyType>>
     public static void main( String [ ] args ) throws FileNotFoundException
     {
         BinarySearchTree<Integer> t = new BinarySearchTree<>( );
-        File file = new File("twoLeaves.txt");
-        Scanner scnr = new Scanner(file);
+        File file = new File("threeLeaves.txt");
+        Scanner scnr = new Scanner(System.in);
         while(scnr.hasNext()) {
         	int value = scnr.nextInt();
         	t.insert(value);
